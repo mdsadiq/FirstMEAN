@@ -5,25 +5,25 @@ var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/meanfirst');         //meanfirst is a Database
 var Bear = require('./app/models/bear.js');               //Bear is a Collection ,In Analogy To SQL ,Bear is a Table
-// use Body-parser ,tO parse incoming data
-app.use(bodyParser.urlencoded({
+
+app.use(bodyParser.urlencoded({                         // use Body-parser ,to parse incoming data -for url encoding
     extended: true
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.json());                             // use Body-parser ,to parse incoming data  - For JSON data
 
 var port = process.env.PORT || 8080; //port
-var router = express.Router(); //Intializing router Instance
+var router = express.Router();                          //Intializing router Instance
 
-router.use(function(req, res, next) {
+router.use(function(req, res, next) {                   //This Function is called everytime an api is called , usefull for retrict the apis based on user
     console.log('call is Logged');
-    next();
+    next();                                             //Program proceeds further only if next() function is called
 });
 
-router.route('/bears')
-
+router.route('/bears')                                  //Route is declared first , this We can handle multiple routes with same URI
+                                                        //We can chain together different Routes.
 .post(function(req, res) {
-        var bear = new Bear();
-        bear.name = req.body.name;
+        var bear = new Bear();                          //Bear is an instance , which intantiates name ,in this case.
+        bear.name = req.body.name;                      // POST PARAMETERS   is available in  req.body
 
         bear.save(function(err) {
             if (err) res.send(err);
@@ -43,7 +43,7 @@ router.route('/bears')
 
 router.route('/bears/:bear_id')
     .get(function(req, res) {
-        Bear.findById(req.params.bear_id, function(err, bear) {
+        Bear.findById(req.params.bear_id, function(err, bear) {   // GET PARAMETERS   is available in  req.params
             if (err) res.send(err);
             res.json(bear);
         });
@@ -79,7 +79,7 @@ router.route('/bears/:bear_id')
 
 
 
-        app.get('/home', function(req, res) {
+        app.get('/home', function(req, res) {                               //This creates page routes
             res.send('This is the home page.I can set up a html here');
         });
 
