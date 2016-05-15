@@ -1,0 +1,16 @@
+{
+  "name": "firstmean",
+  "version": "1.0.0",
+  "description": "First REsTful MEAN Application working on basic CURD operations",
+  "main": "server.js",
+  "dependencies":{
+	"express":"~4.0.0",
+	"mongoose":"~3.6.13",
+	"body-parser":"~1.0.1"
+},
+    "scripts": {
+    "test": "test"
+  },
+  "author": "mdsadiq",
+  "license": "MIT"
+}
